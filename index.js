@@ -5,11 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
   let score = 0
   let dealerScore = 0
   let deckID;
+  let player = document.createElement("div")
   let playerHand = document.createElement("div")
+  let dealer = document.createElement("div")
   let dealerHand = document.createElement("div")
   let gameScore = document.createElement("div")
   let buttons = document.createElement("div")
+  buttons.id = "buttons"
   let hit = document.createElement("button")
+
   hit.innerText = "HIT"
   hit.id = "hit"
   let stay = document.createElement("button")
@@ -34,7 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
       let res = await axios.get(`https://deckofcardsapi.com/api/deck/${id}/draw/?count=2`)
       let cards = res.data.cards
       gameBoard.innerHTML = ""
-      playerHand.innerHTML=""
+      playerHand.innerHTML = ""
+      player.innerHTML= ""
+      dealerHand.innerHTML = ""
+      dealer.innerHTML= ""
       cards.forEach((el) => {
         let card = document.createElement("img")
         card.src=(el.image)
@@ -55,12 +62,13 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         return score
       }
-      gameBoard.appendChild(playerHand)
+      player.appendChild(playerHand)
+      // gameBoard.appendChild(playerHand)
       
       gameScore.id = "score"
       gameScore.innerText = `Player Score: ${await getScore()}`
-      gameBoard.appendChild(gameScore)
-
+      player.appendChild(gameScore)
+      gameBoard.appendChild(player)
       
       buttons.appendChild(hit)
       buttons.appendChild(stay)
@@ -107,20 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
       busted.appendChild(playAgain)
       gameBoard.appendChild(busted)
     } 
-    // else if (score === 21){
-    //   let gameWon = document.createElement("div")
-    //   let victory = document.createElement("h2")
-    //   victory.innerText = "YOU WIN!"
-    //   let results = document.createElement("h3")
-    //   results.innerText = "You winning hand was:"
-    //   playerHand.appendChild(card)
-      
-
-      
-    //   gameWon.appendChild(victory)
-    //   gameWon.appendChild(results)
-    //   gameWon.appendChild(playerHand)
-    // }
+ 
     else {
       playerHand.appendChild(card)
       gameScore.innerText=`Player score: ${score}`
@@ -152,12 +147,13 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         return dealerScore
       }
-      gameBoard.appendChild(dealerHand)
+      dealer.appendChild(dealerHand)
       
       dealerScoreboard.id = "dealerScore"
       dealerScoreboard.innerText = `Dealer score: ${await getScore()}`
       gameBoard.removeChild(buttons)
-      gameBoard.appendChild(dealerScoreboard)
+      dealer.appendChild(dealerScoreboard)
+      gameBoard.appendChild(dealer)
       gameBoard.appendChild(playAgain)
 
       if (dealerScore > score && dealerScore <= 21) {
