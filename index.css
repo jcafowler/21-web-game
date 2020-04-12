@@ -9,7 +9,7 @@ body {
   color: black;
   font-size: 16pt;
 }
-h1 {
+/* h1 {
   color: whitesmoke;
   font-size: 50pt;
   display: flex;
@@ -26,13 +26,13 @@ h1 {
   display: flex;
   justify-content: space-evenly;
   margin: auto;
-}
+} */
 #hit{
   color:red
 
 }
-
+/* 
 #score {
   border: solid 2px #f5f5f5;
   box-shadow: 3px 3px black, -1em 0 .4em grey;
-}
+} */
