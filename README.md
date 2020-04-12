@@ -9,4 +9,4 @@ In this game of 21 the player will play against the computer. The goal of the ga
 - A = 1 point or 11 points
 
 ## Demo
-[![Watch the video ](./assets/demo-video-mock.png)](https://www.youtube.com/watch?v=Pg5i0L73ncU)
+![](./assets/Simple-21-Demo-Original.gif)
